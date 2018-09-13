@@ -1,6 +1,6 @@
 <template>
     <div>
-        <v-toolbar dark color="green">
+        <v-toolbar dark class="toolbar">
             <v-toolbar-title class="white--text">{{name}}</v-toolbar-title>
 
             <v-spacer></v-spacer>
@@ -11,22 +11,23 @@
                 <v-icon>close</v-icon>
             </v-btn>
         </v-toolbar>
-        <v-list>
-            <draggable class="draggable" v-model="notes" @start="drag=true" @end="drag=false" :options="{group:'notes'}">
-        <v-list-tile
-                v-for="note in notes"
-                :key="note.id"
-        >
+        <v-list class="list">
+            <draggable class="draggable" v-model="notes" @start="drag=true" @end="drag=false"
+                       :options="{group:'notes'}">
+                <v-list-tile
+                        v-for="note in notes"
+                        :key="note.id"
+                        class="note"
+                >
 
-            <v-list-tile-content @click="showEditNoteModal(note)">
-                <v-list-tile-title>{{note.text}}</v-list-tile-title>
-            </v-list-tile-content>
+                    <v-list-tile-content @click="showEditNoteModal(note)">
+                        <v-list-tile-title>{{note.text}}</v-list-tile-title>
+                    </v-list-tile-content>
 
-            <v-list-tile-action>
-                <v-icon @click="deleteNote(note.id)">close</v-icon>
-            </v-list-tile-action>
-
-        </v-list-tile>
+                    <v-list-tile-action>
+                        <v-icon @click="deleteNote(note.id)">close</v-icon>
+                    </v-list-tile-action>
+                </v-list-tile>
             </draggable>
         </v-list>
         <v-text-field
@@ -75,6 +76,7 @@
 
 <script>
 import draggable from 'vuedraggable'
+
 export default {
   components: { draggable },
   name: 'TrelloList',
@@ -136,7 +138,21 @@ export default {
 </script>
 
 <style scoped>
-.draggable {
-    min-height: 20px;
-}
+    .list {
+        background-color: darkgrey;
+    }
+    .toolbar {
+        background-color: #1c2940;
+    }
+
+    .note {
+        min-height: 20px;
+        background-color: #FFFFFF;
+        color: #4d4d4d;
+        margin-bottom: 10px;
+        border-radius: 10px;
+        font-family: 'Open Sans', sans-serif;
+        font-weight: 400;
+        font-size: 17px;
+    }
 </style>
