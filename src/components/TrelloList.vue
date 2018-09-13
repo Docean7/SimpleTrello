@@ -154,5 +154,6 @@ export default {
         font-family: 'Open Sans', sans-serif;
         font-weight: 400;
         font-size: 17px;
+        cursor: pointer;
     }
 </style>
